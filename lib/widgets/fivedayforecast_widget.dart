@@ -40,8 +40,26 @@ class _FiveDayForecastState extends State<FiveDayForecast> {
 
   @override
   Widget build(BuildContext context) {
-    if (forecastDataList == null) {
+    if (forecastDataList == null && forecastVM.errorMessage == null) {
       return const LinearProgressIndicator();
+    } else if (forecastVM.errorMessage != null) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Icon(Icons.error, color: Colors.red, size: 50.0),
+            const SizedBox(height: 10.0),
+            Text(
+              "Error fetching data:\n${forecastVM.errorMessage}",
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.red,
+                fontSize: 16.0,
+              ),
+            ),
+          ],
+        ),
+      );
     } else {
       return SingleChildScrollView(
         scrollDirection: Axis.horizontal,

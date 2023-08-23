@@ -6,6 +6,8 @@ import 'package:weather_app/utils/weather_icons.dart';
 class WeatherViewModel extends ChangeNotifier {
   final HttpWeatherRepository _repository;
   WeatherData? _weatherData;
+  String? _errorMessage;
+  String? get errorMessage => _errorMessage;
 
   WeatherViewModel({required HttpWeatherRepository repository})
       : _repository = repository;
@@ -18,7 +20,9 @@ class WeatherViewModel extends ChangeNotifier {
       _weatherData = _transformToWeatherData(response);
       notifyListeners();
     } catch (e) {
-      // Handle error cases accordingly
+      _errorMessage =
+          e.toString(); // Set the error message based on the exception
+      notifyListeners();
     }
   }
 

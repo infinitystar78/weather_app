@@ -1,0 +1,19 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:weather_app/models/forecastdata_model.dart'; // Adjust the import path to match your project structure
+
+void main() {
+  group('ForecastData', () {
+    // Test constructor and data integrity
+    test('should create an instance with correct values', () {
+      final forecast = ForecastData(
+        weatherMain: 'Cloudy',
+        weatherDescription: 'overcast clouds',
+        day: 'Monday',
+      );
+
+      expect(forecast.weatherMain, 'Cloudy');
+      expect(forecast.weatherDescription, 'overcast clouds');
+      expect(forecast.day, 'Monday');
+    });
+  });
+}

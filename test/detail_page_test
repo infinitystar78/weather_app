@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:weather_app/screens/detail_page.dart';
+import 'package:weather_app/models/weather_viewmodel.dart';
+
+void main() {
+  final mockWeatherData = WeatherData(
+    location: 'London',
+    temperature: 21,
+    condition: WeatherCondition.sunny,
+    humidity: 50,
+    pressure: 1000,
+    windSpeed: 10,
+    windDirection: 45,
+    sunrise: 1630832287,
+    sunset: 1630880495,
+  );
+
+  testWidgets('DetailPage displays correct data and widgets', (WidgetTester tester) async {
+    // Build the DetailPage widget
+    await tester.pumpWidget(MaterialApp(home: DetailPage(weatherData: mockWeatherData)));
+
+    // Verify if AppBar displays the right title
+    expect(find.text('London'), findsOneWidget);
+
+    // Check for "5 Day Forecast" label
+    expect(find.text('5 Day Forecast'), findsOneWidget);
+
+    // Check for presence of FiveDayForecast widget
+    expect(find.byType(FiveDayForecast), findsOneWidget);
+
+    // Check for Humidity, Pressure, SunriseSunset, Wind tiles
+    expect(find.byType(HumidityTile), findsOneWidget);
+    expect(find.byType(PressureTile), findsOneWidget);
+    expect(find.byType(SunriseSunsetTile), findsOneWidget);
+    expect(find.byType(WindTile), findsOneWidget);
+  });
+
+}

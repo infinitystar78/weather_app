@@ -38,6 +38,17 @@ class _HomeScreenState extends State<HomeScreen> {
             weatherDataList.add(viewModel.weatherData);
           });
         }
+
+        // Check for errors
+        if (viewModel.errorMessage != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(viewModel.errorMessage!),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
       });
     }
   }

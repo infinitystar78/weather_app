@@ -16,7 +16,7 @@ class DetailPage extends StatelessWidget {
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 24.0, // Adjust the font size as needed
+            fontSize: 24.0,
           ),
           child: Text(weatherData.location),
         ),
@@ -35,7 +35,8 @@ class DetailPage extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 10), // Space between the title and the forecast
+          const SizedBox(
+              height: 10), // Space between the title and the forecast
 
           // Place the FiveDayForecast just below the title
           FiveDayForecast(cityName: weatherData.location),

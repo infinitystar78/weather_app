@@ -1,0 +1,26 @@
+import 'package:test/test.dart';
+import 'package:weather_app/services/network_service.dart';
+
+void main() {
+  group('OpenWeatherMapAPI', () {
+    late OpenWeatherMapAPI api;
+
+    setUp(() {
+      api = OpenWeatherMapAPI("your_api_key_here");
+    });
+
+    test('weather method returns the correct URI', () {
+      final uri = api.weather("London");
+      expect(uri.toString(),
+          "https://api.openweathermap.org/data/2.5/weather?q=London&appid=your_api_key_here&units=metric");
+    });
+
+    test('forecast method returns the correct URI', () {
+      final uri = api.forecast("London");
+      expect(uri.toString(),
+          "https://api.openweathermap.org/data/2.5/forecast?q=London&appid=your_api_key_here&units=metric");
+    });
+
+    // Add more tests for other methods and edge cases
+  });
+}
