@@ -11,10 +11,10 @@ class FiveDayForecast extends StatefulWidget {
   const FiveDayForecast({super.key, required this.cityName});
 
   @override
-  _FiveDayForecastState createState() => _FiveDayForecastState();
+  FiveDayForecastState createState() => FiveDayForecastState();
 }
 
-class _FiveDayForecastState extends State<FiveDayForecast> {
+class FiveDayForecastState extends State<FiveDayForecast> {
   List<ForecastData>? forecastDataList;
   final api = OpenWeatherMapAPI(APIKeys.openWeatherAPIKey);
   final forecastVM =
