@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 class WindTile extends StatelessWidget {
   final double windSpeed;
@@ -54,7 +53,7 @@ class WindTile extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "${windDirectionToCompass(windDirection)}",
+                windDirectionToCompass(windDirection),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0,

@@ -32,10 +32,12 @@ class _HomeScreenState extends State<HomeScreen> {
     for (String city in cities) {
       final viewModel = context.read<WeatherViewModel>();
       viewModel.fetchWeather(city).then((_) {
-        // Note that this uses `.then` because fetchWeather is asynchronous
-        setState(() {
-          weatherDataList.add(viewModel.weatherData);
-        });
+        if (mounted) {
+          // Check if the widget is still in the widget tree
+          setState(() {
+            weatherDataList.add(viewModel.weatherData);
+          });
+        }
       });
     }
   }
@@ -91,13 +93,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailPage(
-                                weatherData: weatherDataList[cardIndex]!),
-                          ),
-                        );
+                        Navigator.of(context).push(PageRouteBuilder(
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) =>
+                                  DetailPage(
+                                      weatherData: weatherDataList[cardIndex]!),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return ScaleTransition(
+                                scale: animation, child: child);
+                          },
+                        ));
                       },
                       child:
                           WeatherCard(weatherData: weatherDataList[cardIndex]!),
