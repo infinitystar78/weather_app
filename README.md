@@ -1,16 +1,15 @@
 # weather_app
 
-A new Flutter project.
+Notes uses OpenAPI
 
-## Getting Started
+Instructions:
 
-This project is a starting point for a Flutter application.
+Download Repo, then run Flutter Pub Get to resolve dependencies.
 
-A few resources to get you started if this is your first Flutter project:
+LocationManager and Local Storage using Hive have been added but have not been implemented yet, 
+this is a future feature that will allow a user to set preferences of City to track weawther and to add current locaton.
+The necessary permissions for location have been added to the iOS plist and Android Manifest.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Tests
+Unit tests cover them models, and main views adn the networking layer using mocks with Mockito.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
