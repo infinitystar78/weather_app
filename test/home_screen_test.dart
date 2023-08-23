@@ -18,7 +18,7 @@ void main() {
         MaterialApp(
           home: ChangeNotifierProvider<WeatherViewModel>.value(
             value: mockViewModel,
-            child: HomeScreen(),
+            child: const HomeScreen(),
           ),
         ),
       );
@@ -37,7 +37,6 @@ class MockWeatherViewModel implements WeatherViewModel, ChangeNotifier {
   @override
   WeatherData? get weatherData => null;
 
-  @override
   set weatherData(WeatherData? value) {}
 
   @override
@@ -57,4 +56,8 @@ class MockWeatherViewModel implements WeatherViewModel, ChangeNotifier {
 
   @override
   void dispose() {}
+
+  @override
+  // TODO: implement errorMessage
+  String? get errorMessage => throw UnimplementedError();
 }
