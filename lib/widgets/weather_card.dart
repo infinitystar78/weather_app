@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather_viewmodel.dart';
+import 'package:weather_app/utils/utility_extensions.dart';
 
 class WeatherCard extends StatelessWidget {
   final WeatherData weatherData;
@@ -29,7 +30,8 @@ class WeatherCard extends StatelessWidget {
                     child: weatherData.icon,
                   ),
                 ),
-                const SizedBox(width: 16.0), // A spacing between icon and temperature
+                const SizedBox(
+                    width: 16.0), // A spacing between icon and temperature
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
@@ -54,7 +56,7 @@ class WeatherCard extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              capitalize(weatherData.description),
+              weatherData.description.capitalize(),
               style:
                   TextStyle(fontSize: 22, color: Colors.blue.withOpacity(0.75)),
             ),
@@ -71,10 +73,5 @@ class WeatherCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String capitalize(String text) {
-    if (text.isEmpty) return text;
-    return text[0].toUpperCase() + text.substring(1);
   }
 }
